@@ -1,0 +1,6 @@
+# Jolis Properties Robots directives
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://jolisproperties.com/sitemap.xml

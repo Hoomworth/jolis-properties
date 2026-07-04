@@ -117,11 +117,61 @@ document.addEventListener("DOMContentLoaded", () => {
     priceRange: "all"
   };
 
+  // Inject dynamic Real Estate Listing ItemList Schema (JSON-LD) for SEO indexing
+  function injectSchemaData(properties) {
+    let schemaId = "properties-schema";
+    let scriptTag = document.getElementById(schemaId);
+    if (!scriptTag) {
+      scriptTag = document.createElement("script");
+      scriptTag.id = schemaId;
+      scriptTag.type = "application/ld+json";
+      document.head.appendChild(scriptTag);
+    }
+    
+    const itemListElement = properties.map((prop, idx) => {
+      return {
+        "@type": "ListItem",
+        "position": idx + 1,
+        "item": {
+          "@type": prop.type === "land" ? "Place" : "SingleFamilyResidence",
+          "name": prop.title,
+          "description": prop.features.join(", "),
+          "image": prop.image,
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": prop.location.split(",")[0].trim(),
+            "addressRegion": prop.location.split(",")[1]?.trim() || "Lagos",
+            "addressCountry": "NG"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": prop.price.toString(),
+            "priceCurrency": "NGN",
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2026-07-04"
+          }
+        }
+      };
+    });
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "numberOfItems": properties.length,
+      "itemListElement": itemListElement
+    };
+
+    scriptTag.textContent = JSON.stringify(schema, null, 2);
+  }
+
   // Render properties to HTML
   function renderProperties(properties) {
     if (!listingGrid) return;
     
     listingGrid.innerHTML = "";
+    
+    // Inject/update SEO schema data dynamically
+    injectSchemaData(properties);
 
     if (properties.length === 0) {
       listingGrid.innerHTML = `
