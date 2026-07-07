@@ -38,9 +38,35 @@ const PROPERTIES_DATA = [
     size: "300 SQM",
     titleDoc: "Government Allocation C of O",
     image: "images/property 3.jpeg",
-    features: ["Buy & Build Estate", "₦20M Initial Deposit", "Saves ₦15M (Pre-Launch price)"],
-    badge: "Pre-Launch Offer",
     description: `🚨 PRE-LAUNCH OFFER 🚨\n\nSome opportunities reward patience. Others reward speed.\n\nThe Emerald Advantage Plots was created for those who understand that the biggest gains come from getting in before everyone else.\n\nFor a limited time, secure a premium 300sqm plot in Ogombo at the exclusive pre-launch price of ₦85M instead of ₦100M, with an initial deposit of just ₦20M.\n\nThis is more than land, it’s an opportunity to secure your place in a strategically positioned Buy & Build Estate before demand rises and prices adjust.\n\nWith limited plots available and the offer ending on July 3rd, the advantage won’t be available for long.\n\nToday’s price is a privilege. Tomorrow’s price is a consequence.\n\n✔ Buy & Build Estate\n✔ 300sqm Premium Plots\n✔ Government Allocation C of O\n✔ ₦85M Pre-launch Price\n✔ ₦20M Initial Deposit\n\nThe plots are limited, The timeline is short. The question is: will you secure yours before the opportunity slips away?`
+  },
+  {
+    id: 4,
+    title: "Kingsway Estate (250 SQM)",
+    type: "land",
+    location: "Ala-Ijebu, Ogun State",
+    price: 3500000,
+    priceLabel: "₦3,500,000",
+    size: "250 SQM",
+    titleDoc: "Certificate of Occupancy (C of O)",
+    image: "images/property 4.jpeg",
+    features: ["Fencing & Gatehouse", "Good Road Network", "9-Month No-Interest Plan", "Strategic Growth Area"],
+    badge: "Pre-Launch Price",
+    description: `Looking to secure your piece of the future?\n*Kingsway Estate* is still selling at *Pre-Launch* price🏡✨\n\nMake the best of the second quarter by positioning yourself early for growth in the next in-demand locations.\n\n📍 Off Epe/ Ijebu expressway, Ogun State.\n\nDesigned for commercial and residential use, and for forward thinkers, KINGSWAY ESTATE offers premium DRY land in a strategic location.\n\nPrices & Sizes:\n▪️ 500sqm - ₦7M\n▪️ 250sqm - ₦3.5M\n\nFlexible Payment Option:\nA 9-month no-interest flexible payment plan is available with a ₦1,000,000 initial deposit.\n\nEstate infrastructure:\n✅ Certificate of Occupancy (C of O)\n✅ Good Road Network\n✅ Fencing and Gatehouse\n✅ Strategic Growth Location\n\nThis is your opportunity to secure a prime location in Ogun State's expanding corridor.\n\nSend us a message now to reserve your plot of Kingsway Estate.`
+  },
+  {
+    id: 5,
+    title: "Kingsway Estate (500 SQM)",
+    type: "land",
+    location: "Ala-Ijebu, Ogun State",
+    price: 7000000,
+    priceLabel: "₦7,000,000",
+    size: "500 SQM",
+    titleDoc: "Certificate of Occupancy (C of O)",
+    image: "images/property 4.jpeg",
+    features: ["Fencing & Gatehouse", "Good Road Network", "9-Month No-Interest Plan", "Strategic Growth Area"],
+    badge: "Pre-Launch Price",
+    description: `Looking to secure your piece of the future?\n*Kingsway Estate* is still selling at *Pre-Launch* price🏡✨\n\nMake the best of the second quarter by positioning yourself early for growth in the next in-demand locations.\n\n📍 Off Epe/ Ijebu expressway, Ogun State.\n\nDesigned for commercial and residential use, and for forward thinkers, KINGSWAY ESTATE offers premium DRY land in a strategic location.\n\nPrices & Sizes:\n▪️ 500sqm - ₦7M\n▪️ 250sqm - ₦3.5M\n\nFlexible Payment Option:\nA 9-month no-interest flexible payment plan is available with a ₦1,000,000 initial deposit.\n\nEstate infrastructure:\n✅ Certificate of Occupancy (C of O)\n✅ Good Road Network\n✅ Fencing and Gatehouse\n✅ Strategic Growth Location\n\nThis is your opportunity to secure a prime location in Ogun State's expanding corridor.\n\nSend us a message now to reserve your plot of Kingsway Estate.`
   }
 ];
 
