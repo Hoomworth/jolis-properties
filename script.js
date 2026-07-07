@@ -103,6 +103,19 @@ const PROPERTIES_DATA = [
     image: "images/property 2.jpeg",
     features: ["Get 1 Extra Plot FREE", "10-15 Fruit Trees Included", "Price rises to ₦18M in 16 days"],
     badge: "Resort Package"
+  },
+  {
+    id: 9,
+    title: "Emerald Advantage Plots",
+    type: "land",
+    location: "Ogombo, Ajah, Lagos",
+    price: 85000000,
+    priceLabel: "₦85,000,000",
+    size: "300 SQM",
+    titleDoc: "Government Allocation C of O",
+    image: "images/property 3.jpeg",
+    features: ["Buy & Build Estate", "₦20M Initial Deposit", "Saves ₦15M (Pre-Launch price)"],
+    badge: "Pre-Launch Offer"
   }
 ];
 
