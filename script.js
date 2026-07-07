@@ -77,6 +77,32 @@ const PROPERTIES_DATA = [
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
     features: ["Fully Gated Estate", "Paved Access Road", "Buy and Build Zone"],
     badge: "Top Choice"
+  },
+  {
+    id: 7,
+    title: "Alpha Garden City Resort (500 SQM)",
+    type: "resort",
+    location: "Academy, Ibadan",
+    price: 3500000,
+    priceLabel: "₦3,500,000",
+    size: "500 SQM Plot",
+    titleDoc: "Pre-Launch Offer",
+    image: "images/property 1.jpeg",
+    features: ["Golf, Spa, Gym & Yoga Access", "10-15 Fruit Trees Included", "Price rises to ₦6M in 16 days"],
+    badge: "Pre-Launch Promo"
+  },
+  {
+    id: 8,
+    title: "Alpha Garden City Resort (1 Acre)",
+    type: "resort",
+    location: "Academy, Ibadan",
+    price: 12500000,
+    priceLabel: "₦12,500,000",
+    size: "1 Acre (6 Plots)",
+    titleDoc: "+1 Plot FREE (Total 7)",
+    image: "images/property 2.jpeg",
+    features: ["Get 1 Extra Plot FREE", "10-15 Fruit Trees Included", "Price rises to ₦18M in 16 days"],
+    badge: "Resort Package"
   }
 ];
 
