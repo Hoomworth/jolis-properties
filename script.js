@@ -2,84 +2,6 @@
 const PROPERTIES_DATA = [
   {
     id: 1,
-    title: "The Vineyard Estate",
-    type: "land",
-    location: "Epe, Lagos",
-    price: 12500000,
-    priceLabel: "₦12,500,000",
-    size: "500 SQM",
-    titleDoc: "Registered Survey",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80",
-    features: ["100% Dry Land", "Perimeter Fencing", "Rapid Value Appreciation"],
-    badge: "Hot Investment"
-  },
-  {
-    id: 2,
-    title: "Oakwood Luxury Terraces",
-    type: "residential",
-    location: "Sangotedo, Lagos",
-    price: 85000000,
-    priceLabel: "₦85,000,000",
-    size: "4 Bed Terrace + BQ",
-    titleDoc: "Governor's Consent",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
-    features: ["24/7 Clean Power", "Fully Fitted Kitchen", "Gym & Playground"],
-    badge: "Selling Fast"
-  },
-  {
-    id: 3,
-    title: "The Oasis Commercial Hub",
-    type: "commercial",
-    location: "Ibeju-Lekki, Lagos",
-    price: 45000000,
-    priceLabel: "₦45,000,000",
-    size: "600 SQM Commercial Plot",
-    titleDoc: "Certificate of Occupancy",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
-    features: ["Express Road Facing", "Perfect for Showroom", "Immediate Physical Allocation"],
-    badge: "Best Seller"
-  },
-  {
-    id: 4,
-    title: "La Campagne Resort View Estate",
-    type: "resort",
-    location: "Ibeju-Lekki, Lagos",
-    price: 22000000,
-    priceLabel: "₦22,000,000",
-    size: "500 SQM",
-    titleDoc: "Excision & Gazette",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80",
-    features: ["Ocean View Proximity", "Eco-friendly Layout", "High Passive Rental ROI"],
-    badge: "New Launch"
-  },
-  {
-    id: 5,
-    title: "Pinecrest Smart Apartments",
-    type: "residential",
-    location: "Lekki, Lagos",
-    price: 120000000,
-    priceLabel: "₦120,000,000",
-    size: "3 Bedroom Apartment",
-    titleDoc: "Governor's Consent",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80",
-    features: ["Smart Home Automation", "All Rooms En-suite", "Treated Water Facility"],
-    badge: "Luxury Living"
-  },
-  {
-    id: 6,
-    title: "Prestige Heights Plots",
-    type: "land",
-    location: "Sangotedo, Lagos",
-    price: 35000000,
-    priceLabel: "₦35,000,000",
-    size: "600 SQM",
-    titleDoc: "Certificate of Occupancy",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
-    features: ["Fully Gated Estate", "Paved Access Road", "Buy and Build Zone"],
-    badge: "Top Choice"
-  },
-  {
-    id: 7,
     title: "Alpha Garden City Resort (500 SQM)",
     type: "resort",
     location: "Academy, Ibadan",
@@ -89,10 +11,11 @@ const PROPERTIES_DATA = [
     titleDoc: "Pre-Launch Offer",
     image: "images/property 1.jpeg",
     features: ["Golf, Spa, Gym & Yoga Access", "10-15 Fruit Trees Included", "Price rises to ₦6M in 16 days"],
-    badge: "Pre-Launch Promo"
+    badge: "Pre-Launch Promo",
+    description: `🚨 PRE-LAUNCH OFFER 🚨\n\nTime is ticking… and so is the price.\n\nAlpha Garden City Resort PRE-LAUNCH OFFER IS ENDING SOON, and this is the lowest price you’ll ever see.\n\nRight now:\n📍 500SQM — ₦3.5M\n📍 1 Acre — ₦12.5M\n+ 1 Plot FREE and 10-15 Fruit Trees\n\n⚠️ In the next 16 Days:\n📍 500SQM — ₦6M\n📍 1 Acre — ₦18M\n\nWhy pay millions more for the same investment?\n\nImagine owning a resort destination with golf course, wellness spa, yoga hall, gym studio and orchard garden.\n\nLocation: Olomi Olunde Road, Academy, Ibadan.\n\nSecure your plot today and save some millions.`
   },
   {
-    id: 8,
+    id: 2,
     title: "Alpha Garden City Resort (1 Acre)",
     type: "resort",
     location: "Academy, Ibadan",
@@ -102,10 +25,11 @@ const PROPERTIES_DATA = [
     titleDoc: "+1 Plot FREE (Total 7)",
     image: "images/property 2.jpeg",
     features: ["Get 1 Extra Plot FREE", "10-15 Fruit Trees Included", "Price rises to ₦18M in 16 days"],
-    badge: "Resort Package"
+    badge: "Resort Package",
+    description: `🚨 PRE-LAUNCH OFFER 🚨\n\nTime is ticking… and so is the price.\n\nAlpha Garden City Resort PRE-LAUNCH OFFER IS ENDING SOON, and this is the lowest price you’ll ever see.\n\nRight now:\n📍 500SQM — ₦3.5M\n📍 1 Acre — ₦12.5M\n+ 1 Plot FREE and 10-15 Fruit Trees\n\n⚠️ In the next 16 Days:\n📍 500SQM — ₦6M\n📍 1 Acre — ₦18M\n\nWhy pay millions more for the same investment?\n\nImagine owning a resort destination with golf course, wellness spa, yoga hall, gym studio and orchard garden.\n\nLocation: Olomi Olunde Road, Academy, Ibadan.\n\nSecure your plot today and save some millions.`
   },
   {
-    id: 9,
+    id: 3,
     title: "Emerald Advantage Plots",
     type: "land",
     location: "Ogombo, Ajah, Lagos",
@@ -115,7 +39,8 @@ const PROPERTIES_DATA = [
     titleDoc: "Government Allocation C of O",
     image: "images/property 3.jpeg",
     features: ["Buy & Build Estate", "₦20M Initial Deposit", "Saves ₦15M (Pre-Launch price)"],
-    badge: "Pre-Launch Offer"
+    badge: "Pre-Launch Offer",
+    description: `🚨 PRE-LAUNCH OFFER 🚨\n\nSome opportunities reward patience. Others reward speed.\n\nThe Emerald Advantage Plots was created for those who understand that the biggest gains come from getting in before everyone else.\n\nFor a limited time, secure a premium 300sqm plot in Ogombo at the exclusive pre-launch price of ₦85M instead of ₦100M, with an initial deposit of just ₦20M.\n\nThis is more than land, it’s an opportunity to secure your place in a strategically positioned Buy & Build Estate before demand rises and prices adjust.\n\nWith limited plots available and the offer ending on July 3rd, the advantage won’t be available for long.\n\nToday’s price is a privilege. Tomorrow’s price is a consequence.\n\n✔ Buy & Build Estate\n✔ 300sqm Premium Plots\n✔ Government Allocation C of O\n✔ ₦85M Pre-launch Price\n✔ ₦20M Initial Deposit\n\nThe plots are limited, The timeline is short. The question is: will you secure yours before the opportunity slips away?`
   }
 ];
 
@@ -203,6 +128,89 @@ document.addEventListener("DOMContentLoaded", () => {
     scriptTag.textContent = JSON.stringify(schema, null, 2);
   }
 
+  // Create Modal element dynamically if it doesn't exist
+  let modalOverlay = document.getElementById("property-modal-overlay");
+  if (!modalOverlay) {
+    modalOverlay = document.createElement("div");
+    modalOverlay.id = "property-modal-overlay";
+    modalOverlay.className = "modal-overlay";
+    document.body.appendChild(modalOverlay);
+  }
+
+  function openPropertyModal(prop) {
+    const waText = encodeURIComponent(
+      `Hello Jolis Properties, I am interested in inquiring about "${prop.title}" in ${prop.location} (listed at ${prop.priceLabel}) on your website. Please share more details.`
+    );
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+
+    const featuresHtml = prop.features
+      .map(feat => `<li>${feat}</li>`)
+      .join("");
+
+    modalOverlay.innerHTML = `
+      <div class="modal-container">
+        <button class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+        <div class="modal-hero">
+          <img src="${prop.image}" alt="${prop.title}">
+        </div>
+        <div class="modal-body">
+          <div class="modal-badge-wrapper">
+            <span class="property-badge">${prop.badge}</span>
+            <span class="property-type-tag" style="position: static; transform: none; display: inline-block;">${prop.type}</span>
+          </div>
+          <h2>${prop.title}</h2>
+          <div class="modal-location">
+            <span>📍</span> ${prop.location}
+          </div>
+          
+          <div class="modal-meta-grid">
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Price</span>
+              <span class="modal-meta-val" style="color: var(--primary-color);">${prop.priceLabel}</span>
+            </div>
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Size</span>
+              <span class="modal-meta-val">${prop.size}</span>
+            </div>
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Document</span>
+              <span class="modal-meta-val">${prop.titleDoc}</span>
+            </div>
+          </div>
+
+          <div class="modal-description">
+            ${prop.description}
+          </div>
+
+          <ul class="modal-features-list">
+            ${featuresHtml}
+          </ul>
+
+          <a href="${waUrl}" target="_blank" rel="noopener" class="modal-cta-btn btn-primary wa-color" style="display: flex; gap: 8px; justify-content: center; align-items: center; text-decoration: none; color: var(--white); background: #25d366; font-weight: 700; border-radius: 8px; padding: 14px;">
+            <span>Book Inspection via WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    `;
+
+    modalOverlay.classList.add("active");
+    document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+
+    // Modal closing logic
+    const closeBtn = modalOverlay.querySelector("#modal-close-btn");
+    closeBtn.addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove("active");
+    document.body.style.overflow = ""; // Restore scrolling
+  }
+
   // Render properties to HTML
   function renderProperties(properties) {
     if (!listingGrid) return;
@@ -237,6 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Render Card
       const card = document.createElement("div");
       card.className = "property-card";
+      card.style.cursor = "pointer";
       
       const badgeClass = prop.badge.toLowerCase().includes("luxury") || prop.badge.toLowerCase().includes("best") ? "property-badge accent" : "property-badge";
 
@@ -274,6 +283,15 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
         </div>
       `;
+
+      // Open details modal on clicking the card (except the WhatsApp CTA)
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".property-cta")) {
+          return; // Allow WhatsApp button click to function normally
+        }
+        openPropertyModal(prop);
+      });
+
       listingGrid.appendChild(card);
     });
   }
