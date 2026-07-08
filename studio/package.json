@@ -1,0 +1,16 @@
+{
+  "name": "jolis-properties-studio",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "sanity": "^3.22.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.1"
+  },
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  }
+}
