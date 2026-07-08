@@ -75,8 +75,21 @@ const PROPERTIES_DATA = [
       "images/property 5 (3).jpeg"
     ],
     features: ["Fencing & Gatehouse", "Good Road Network", "9-Month No-Interest Plan", "Strategic Growth Area"],
-    badge: "Pre-Launch Price",
     description: `Looking to secure your piece of the future?\n*Kingsway Estate* is still selling at *Pre-Launch* price🏡✨\n\nMake the best of the second quarter by positioning yourself early for growth in the next in-demand locations.\n\n📍 Off Epe/ Ijebu expressway, Ogun State.\n\nDesigned for commercial and residential use, and for forward thinkers, KINGSWAY ESTATE offers premium DRY land in a strategic location.\n\nPrices & Sizes:\n▪️ 500sqm - ₦7M\n▪️ 250sqm - ₦3.5M\n\nFlexible Payment Option:\nA 9-month no-interest flexible payment plan is available with a ₦1,000,000 initial deposit.\n\nEstate infrastructure:\n✅ Certificate of Occupancy (C of O)\n✅ Good Road Network\n✅ Fencing and Gatehouse\n✅ Strategic Growth Location\n\nThis is your opportunity to secure a prime location in Ogun State's expanding corridor.\n\nSend us a message now to reserve your plot of Kingsway Estate.`
+  },
+  {
+    id: 6,
+    title: "Ayhomes Luxury Villa (Commercial)",
+    type: "commercial",
+    location: "Omole, Mainland, Lagos",
+    price: 700000000,
+    priceLabel: "₦700,000,000",
+    size: "1000 SQM",
+    titleDoc: "Governor's Consent: 189/GC",
+    images: ["images/property 6.jpeg"],
+    features: ["Well-planned road network", "Efficient drainage system", "Enriching recreational areas", "Consistent electricity supply", "Secure gated community"],
+    badge: "Commercial Plot",
+    description: `AYHOMES LUXURY VILLA\n(COMMERCIAL PLOT)\n\nLUXURY REDEFINED\n\nLooking for a lucrative investment opportunity? look no further, AyHomes Investments LTD presents an exclusive landed property right here in Lagos State.\n\nWhether you’re looking for a luxurious family home or a high-potential investment, AyHomes Luxury Villa is your ideal choice. Seize this opportunity to own a prestigious property in the heart of Lagos' thriving real estate market.\n\nPrice:\nCommercial 1000SQM - ₦700M\nInitial Deposit: ₦50M\n\nTitle Document:\nGovernor's Consent (189/189/27GC)\n\nOutstanding Amenities:\n• Well-planned road network\n• Efficient drainage system\n• Enriching recreational areas\n• Consistent electricity supply\n• Securely fenced and gated community\n\nNeighborhood landmarks:\n• Ikeja City Mall\n• Westgate Lifecare Mall\n• De Casa Luxuria\n• Darrell Suites\n• Magodo\n• Omole Phase 2`
   }
 ];
 
