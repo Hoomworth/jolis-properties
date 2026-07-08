@@ -1,3 +1,7 @@
+// Sanity CMS Configuration
+const SANITY_PROJECT_ID = "YOUR_PROJECT_ID"; // Replace with your Sanity Project ID
+const SANITY_DATASET = "production";        // Replace with your dataset (usually production)
+
 // Properties Database
 const PROPERTIES_DATA = [
   {
@@ -414,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Filter evaluation logic
   function applyFilters() {
-    let filtered = PROPERTIES_DATA.filter(prop => {
+    let filtered = activePropertiesList.filter(prop => {
       // 1. Search Query filter (matches title and location)
       const matchesSearch = 
         prop.title.toLowerCase().includes(currentFilters.search.toLowerCase()) ||
@@ -490,8 +494,73 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initialize view
-  renderProperties(PROPERTIES_DATA);
+  // Set up properties list state
+  let activePropertiesList = PROPERTIES_DATA;
+
+  // Fetch properties from Sanity or use static fallback
+  async function loadProperties() {
+    if (SANITY_PROJECT_ID === "YOUR_PROJECT_ID") {
+      console.log("Sanity Project ID is at default placeholder. Using static fallback data.");
+      activePropertiesList = PROPERTIES_DATA;
+      renderProperties(activePropertiesList);
+      return;
+    }
+
+    const query = encodeURIComponent(`*[_type == "property"]{
+      id,
+      title,
+      type,
+      location,
+      price,
+      priceLabel,
+      size,
+      titleDoc,
+      badge,
+      description,
+      features,
+      "images": images[].asset->url
+    }`);
+    
+    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}?query=${query}`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const result = await response.json();
+      
+      if (result.result && result.result.length > 0) {
+        // Map/sanitize properties from Sanity structure
+        activePropertiesList = result.result.map((prop, idx) => ({
+          id: prop.id || idx + 1,
+          title: prop.title,
+          type: prop.type,
+          location: prop.location,
+          price: prop.price,
+          priceLabel: prop.priceLabel,
+          size: prop.size,
+          titleDoc: prop.titleDoc,
+          badge: prop.badge || "Hot Deal",
+          description: prop.description,
+          features: prop.features || [],
+          images: prop.images && prop.images.length > 0 
+            ? prop.images.map(imgUrl => `${imgUrl}?w=800&auto=format`)
+            : ["https://images.unsplash.com/photo-1564013799919-ab600027ffc6"]
+        }));
+        
+        console.log("Successfully fetched properties from Sanity.io CDN.");
+      } else {
+        console.log("Sanity query returned empty. Using static fallback data.");
+        activePropertiesList = PROPERTIES_DATA;
+      }
+    } catch (error) {
+      console.error("Failed to fetch from Sanity API, falling back to static database:", error);
+      activePropertiesList = PROPERTIES_DATA;
+    }
+    renderProperties(activePropertiesList);
+  }
+
+  // Initialize view by loading properties
+  loadProperties();
 
   // Form WhatsApp Redirection Handler
   const contactForm = document.getElementById("lead-contact-form");
