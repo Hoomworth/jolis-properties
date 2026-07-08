@@ -1,5 +1,5 @@
 // Sanity CMS Configuration
-const SANITY_PROJECT_ID = "YOUR_PROJECT_ID"; // Replace with your Sanity Project ID
+const SANITY_PROJECT_ID = "rcaapojl"; // Replace with your Sanity Project ID
 const SANITY_DATASET = "production";        // Replace with your dataset (usually production)
 
 // Properties Database
