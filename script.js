@@ -9,7 +9,7 @@ const PROPERTIES_DATA = [
     priceLabel: "₦3,500,000",
     size: "500 SQM Plot",
     titleDoc: "Pre-Launch Offer",
-    image: "images/property 1.jpeg",
+    images: ["images/property 1.jpeg"],
     features: ["Golf, Spa, Gym & Yoga Access", "10-15 Fruit Trees Included", "Price rises to ₦6M in 16 days"],
     badge: "Pre-Launch Promo",
     description: `🚨 PRE-LAUNCH OFFER 🚨\n\nTime is ticking… and so is the price.\n\nAlpha Garden City Resort PRE-LAUNCH OFFER IS ENDING SOON, and this is the lowest price you’ll ever see.\n\nRight now:\n📍 500SQM — ₦3.5M\n📍 1 Acre — ₦12.5M\n+ 1 Plot FREE and 10-15 Fruit Trees\n\n⚠️ In the next 16 Days:\n📍 500SQM — ₦6M\n📍 1 Acre — ₦18M\n\nWhy pay millions more for the same investment?\n\nImagine owning a resort destination with golf course, wellness spa, yoga hall, gym studio and orchard garden.\n\nLocation: Olomi Olunde Road, Academy, Ibadan.\n\nSecure your plot today and save some millions.`
@@ -23,7 +23,7 @@ const PROPERTIES_DATA = [
     priceLabel: "₦12,500,000",
     size: "1 Acre (6 Plots)",
     titleDoc: "+1 Plot FREE (Total 7)",
-    image: "images/property 2.jpeg",
+    images: ["images/property 2.jpeg"],
     features: ["Get 1 Extra Plot FREE", "10-15 Fruit Trees Included", "Price rises to ₦18M in 16 days"],
     badge: "Resort Package",
     description: `🚨 PRE-LAUNCH OFFER 🚨\n\nTime is ticking… and so is the price.\n\nAlpha Garden City Resort PRE-LAUNCH OFFER IS ENDING SOON, and this is the lowest price you’ll ever see.\n\nRight now:\n📍 500SQM — ₦3.5M\n📍 1 Acre — ₦12.5M\n+ 1 Plot FREE and 10-15 Fruit Trees\n\n⚠️ In the next 16 Days:\n📍 500SQM — ₦6M\n📍 1 Acre — ₦18M\n\nWhy pay millions more for the same investment?\n\nImagine owning a resort destination with golf course, wellness spa, yoga hall, gym studio and orchard garden.\n\nLocation: Olomi Olunde Road, Academy, Ibadan.\n\nSecure your plot today and save some millions.`
@@ -37,7 +37,9 @@ const PROPERTIES_DATA = [
     priceLabel: "₦85,000,000",
     size: "300 SQM",
     titleDoc: "Government Allocation C of O",
-    image: "images/property 3.jpeg",
+    images: ["images/property 3.jpeg"],
+    features: ["Buy & Build Estate", "₦20M Initial Deposit", "Saves ₦15M (Pre-Launch price)"],
+    badge: "Pre-Launch Offer",
     description: `🚨 PRE-LAUNCH OFFER 🚨\n\nSome opportunities reward patience. Others reward speed.\n\nThe Emerald Advantage Plots was created for those who understand that the biggest gains come from getting in before everyone else.\n\nFor a limited time, secure a premium 300sqm plot in Ogombo at the exclusive pre-launch price of ₦85M instead of ₦100M, with an initial deposit of just ₦20M.\n\nThis is more than land, it’s an opportunity to secure your place in a strategically positioned Buy & Build Estate before demand rises and prices adjust.\n\nWith limited plots available and the offer ending on July 3rd, the advantage won’t be available for long.\n\nToday’s price is a privilege. Tomorrow’s price is a consequence.\n\n✔ Buy & Build Estate\n✔ 300sqm Premium Plots\n✔ Government Allocation C of O\n✔ ₦85M Pre-launch Price\n✔ ₦20M Initial Deposit\n\nThe plots are limited, The timeline is short. The question is: will you secure yours before the opportunity slips away?`
   },
   {
@@ -49,7 +51,11 @@ const PROPERTIES_DATA = [
     priceLabel: "₦3,500,000",
     size: "250 SQM",
     titleDoc: "Certificate of Occupancy (C of O)",
-    image: "images/property 4.jpeg",
+    images: [
+      "images/property 5 (1).jpeg",
+      "images/property 5 (2).jpeg",
+      "images/property 5 (3).jpeg"
+    ],
     features: ["Fencing & Gatehouse", "Good Road Network", "9-Month No-Interest Plan", "Strategic Growth Area"],
     badge: "Pre-Launch Price",
     description: `Looking to secure your piece of the future?\n*Kingsway Estate* is still selling at *Pre-Launch* price🏡✨\n\nMake the best of the second quarter by positioning yourself early for growth in the next in-demand locations.\n\n📍 Off Epe/ Ijebu expressway, Ogun State.\n\nDesigned for commercial and residential use, and for forward thinkers, KINGSWAY ESTATE offers premium DRY land in a strategic location.\n\nPrices & Sizes:\n▪️ 500sqm - ₦7M\n▪️ 250sqm - ₦3.5M\n\nFlexible Payment Option:\nA 9-month no-interest flexible payment plan is available with a ₦1,000,000 initial deposit.\n\nEstate infrastructure:\n✅ Certificate of Occupancy (C of O)\n✅ Good Road Network\n✅ Fencing and Gatehouse\n✅ Strategic Growth Location\n\nThis is your opportunity to secure a prime location in Ogun State's expanding corridor.\n\nSend us a message now to reserve your plot of Kingsway Estate.`
@@ -63,7 +69,11 @@ const PROPERTIES_DATA = [
     priceLabel: "₦7,000,000",
     size: "500 SQM",
     titleDoc: "Certificate of Occupancy (C of O)",
-    image: "images/property 4.jpeg",
+    images: [
+      "images/property 5 (1).jpeg",
+      "images/property 5 (2).jpeg",
+      "images/property 5 (3).jpeg"
+    ],
     features: ["Fencing & Gatehouse", "Good Road Network", "9-Month No-Interest Plan", "Strategic Growth Area"],
     badge: "Pre-Launch Price",
     description: `Looking to secure your piece of the future?\n*Kingsway Estate* is still selling at *Pre-Launch* price🏡✨\n\nMake the best of the second quarter by positioning yourself early for growth in the next in-demand locations.\n\n📍 Off Epe/ Ijebu expressway, Ogun State.\n\nDesigned for commercial and residential use, and for forward thinkers, KINGSWAY ESTATE offers premium DRY land in a strategic location.\n\nPrices & Sizes:\n▪️ 500sqm - ₦7M\n▪️ 250sqm - ₦3.5M\n\nFlexible Payment Option:\nA 9-month no-interest flexible payment plan is available with a ₦1,000,000 initial deposit.\n\nEstate infrastructure:\n✅ Certificate of Occupancy (C of O)\n✅ Good Road Network\n✅ Fencing and Gatehouse\n✅ Strategic Growth Location\n\nThis is your opportunity to secure a prime location in Ogun State's expanding corridor.\n\nSend us a message now to reserve your plot of Kingsway Estate.`
@@ -126,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "@type": prop.type === "land" ? "Place" : "SingleFamilyResidence",
           "name": prop.title,
           "description": prop.features.join(", "),
-          "image": prop.image,
+          "image": prop.images[0],
           "address": {
             "@type": "PostalAddress",
             "addressLocality": prop.location.split(",")[0].trim(),
@@ -163,6 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(modalOverlay);
   }
 
+  let autoPlayInterval = null;
+
   function openPropertyModal(prop) {
     const waText = encodeURIComponent(
       `Hello Jolis Properties, I am interested in inquiring about "${prop.title}" in ${prop.location} (listed at ${prop.priceLabel}) on your website. Please share more details.`
@@ -173,11 +185,34 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(feat => `<li>${feat}</li>`)
       .join("");
 
+    // Check if property has multiple images
+    const hasMultipleImages = prop.images && prop.images.length > 1;
+    let heroHtml = "";
+
+    if (hasMultipleImages) {
+      heroHtml = `
+        <div class="modal-carousel" id="modal-carousel-container">
+          ${prop.images.map((img, index) => `
+            <img src="${img}" class="carousel-slide ${index === 0 ? 'active' : ''}" alt="${prop.title} - Image ${index + 1}">
+          `).join("")}
+          <button class="carousel-prev" id="carousel-prev-btn" aria-label="Previous image">&lt;</button>
+          <button class="carousel-next" id="carousel-next-btn" aria-label="Next image">&gt;</button>
+          <div class="carousel-dots">
+            ${prop.images.map((_, index) => `
+              <span class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    } else {
+      heroHtml = `<img src="${prop.images[0]}" alt="${prop.title}">`;
+    }
+
     modalOverlay.innerHTML = `
       <div class="modal-container">
         <button class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
         <div class="modal-hero">
-          <img src="${prop.image}" alt="${prop.title}">
+          ${heroHtml}
         </div>
         <div class="modal-body">
           <div class="modal-badge-wrapper">
@@ -222,6 +257,42 @@ document.addEventListener("DOMContentLoaded", () => {
     modalOverlay.classList.add("active");
     document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
 
+    // Add slider controls if multiple images exist
+    if (hasMultipleImages) {
+      let currentSlide = 0;
+      const slides = modalOverlay.querySelectorAll(".carousel-slide");
+      const dots = modalOverlay.querySelectorAll(".carousel-dot");
+      const totalSlides = slides.length;
+
+      const showSlide = (index) => {
+        slides.forEach(slide => slide.classList.remove("active"));
+        dots.forEach(dot => dot.classList.remove("active"));
+        
+        currentSlide = (index + totalSlides) % totalSlides;
+        
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].classList.add("active");
+      };
+
+      const prevBtn = modalOverlay.querySelector("#carousel-prev-btn");
+      const nextBtn = modalOverlay.querySelector("#carousel-next-btn");
+
+      prevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
+      nextBtn.addEventListener("click", () => showSlide(currentSlide + 1));
+
+      dots.forEach(dot => {
+        dot.addEventListener("click", (e) => {
+          const idx = parseInt(e.target.dataset.index);
+          showSlide(idx);
+        });
+      });
+
+      // Autoplay slider every 5 seconds
+      autoPlayInterval = setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    }
+
     // Modal closing logic
     const closeBtn = modalOverlay.querySelector("#modal-close-btn");
     closeBtn.addEventListener("click", closeModal);
@@ -233,6 +304,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeModal() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
     modalOverlay.classList.remove("active");
     document.body.style.overflow = ""; // Restore scrolling
   }
@@ -277,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.innerHTML = `
         <div class="property-img-wrapper">
-          <img class="property-img" src="${prop.image}" alt="${prop.title}" loading="lazy">
+          <img class="property-img" src="${prop.images[0]}" alt="${prop.title}" loading="lazy">
           <span class="${badgeClass}">${prop.badge}</span>
           <span class="property-type-tag">${prop.type}</span>
         </div>
