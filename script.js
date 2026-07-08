@@ -75,6 +75,7 @@ const PROPERTIES_DATA = [
       "images/property 5 (3).jpeg"
     ],
     features: ["Fencing & Gatehouse", "Good Road Network", "9-Month No-Interest Plan", "Strategic Growth Area"],
+    badge: "Pre-Launch Price",
     description: `Looking to secure your piece of the future?\n*Kingsway Estate* is still selling at *Pre-Launch* price🏡✨\n\nMake the best of the second quarter by positioning yourself early for growth in the next in-demand locations.\n\n📍 Off Epe/ Ijebu expressway, Ogun State.\n\nDesigned for commercial and residential use, and for forward thinkers, KINGSWAY ESTATE offers premium DRY land in a strategic location.\n\nPrices & Sizes:\n▪️ 500sqm - ₦7M\n▪️ 250sqm - ₦3.5M\n\nFlexible Payment Option:\nA 9-month no-interest flexible payment plan is available with a ₦1,000,000 initial deposit.\n\nEstate infrastructure:\n✅ Certificate of Occupancy (C of O)\n✅ Good Road Network\n✅ Fencing and Gatehouse\n✅ Strategic Growth Location\n\nThis is your opportunity to secure a prime location in Ogun State's expanding corridor.\n\nSend us a message now to reserve your plot of Kingsway Estate.`
   },
   {
@@ -229,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="modal-body">
           <div class="modal-badge-wrapper">
-            <span class="property-badge">${prop.badge}</span>
+            <span class="property-badge">${prop.badge || "Hot Deal"}</span>
             <span class="property-type-tag" style="position: static; transform: none; display: inline-block;">${prop.type}</span>
           </div>
           <h2>${prop.title}</h2>
@@ -361,12 +362,13 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "property-card";
       card.style.cursor = "pointer";
       
-      const badgeClass = prop.badge.toLowerCase().includes("luxury") || prop.badge.toLowerCase().includes("best") ? "property-badge accent" : "property-badge";
+      const badgeText = prop.badge || "Hot Deal";
+      const badgeClass = badgeText.toLowerCase().includes("luxury") || badgeText.toLowerCase().includes("best") ? "property-badge accent" : "property-badge";
 
       card.innerHTML = `
         <div class="property-img-wrapper">
           <img class="property-img" src="${prop.images[0]}" alt="${prop.title}" loading="lazy">
-          <span class="${badgeClass}">${prop.badge}</span>
+          <span class="${badgeClass}">${badgeText}</span>
           <span class="property-type-tag">${prop.type}</span>
         </div>
         <div class="property-info">
