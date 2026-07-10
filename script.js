@@ -536,7 +536,7 @@ document.addEventListener("DOMContentLoaded", () => {
           type: prop.type,
           location: prop.location,
           price: prop.price,
-          priceLabel: prop.priceLabel,
+          priceLabel: prop.price ? `₦${Number(prop.price).toLocaleString()}` : (prop.priceLabel || "Price on Call"),
           size: prop.size,
           titleDoc: prop.titleDoc,
           badge: prop.badge || "Hot Deal",

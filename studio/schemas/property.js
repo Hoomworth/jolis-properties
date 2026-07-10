@@ -70,7 +70,7 @@ export default {
       name: 'description',
       title: 'Full Property Description',
       type: 'text',
-      description: 'Detailed description of the property. Supports linebreaks.',
+      description: 'Detailed description. Emojis (🏡, 📍, ✅) and linebreaks typed here will show up exactly as written on the website.',
       validation: Rule => Rule.required()
     },
     {
@@ -78,7 +78,7 @@ export default {
       title: 'Key Features List',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Bullet point highlights of the property.'
+      description: 'Add individual highlights (e.g., "Consistent electricity supply", "24/7 Security"). These will display as a beautiful checkmark list on the card and modal.'
     },
     {
       name: 'images',
