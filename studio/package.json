@@ -9,8 +9,8 @@
     "styled-components": "^6.1.1"
   },
   "scripts": {
-    "dev": "sanity dev",
-    "build": "sanity build",
-    "deploy": "sanity deploy"
+    "dev": "npx sanity dev",
+    "build": "npx sanity build",
+    "deploy": "npx sanity deploy"
   }
 }

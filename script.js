@@ -562,6 +562,448 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize view by loading properties
   loadProperties();
 
+  // ===== SANITY BLOG INTEGRATION MODULE =====
+  let activeBlogPosts = [];
+
+  const articleOverlay = document.getElementById("article-modal-overlay");
+  const articleContent = document.getElementById("article-modal-content");
+  const articleBackBtn = document.getElementById("article-back-btn");
+  const articleCloseBtn = document.getElementById("article-close-btn");
+  const blogGrid = document.getElementById("blog-grid");
+
+  // Sanity Image URL Helper
+  function getSanityImageUrl(imageObj) {
+    if (!imageObj) return '';
+    if (typeof imageObj === 'string') return imageObj;
+    if (imageObj.url) return imageObj.url;
+    if (imageObj.asset && imageObj.asset.url) return imageObj.asset.url;
+
+    const ref = imageObj.asset ? imageObj.asset._ref : imageObj._ref;
+    if (!ref) return '';
+
+    const parts = ref.split('-');
+    if (parts.length >= 4 && parts[0] === 'image') {
+      const assetId = parts[1];
+      const dimensions = parts[2];
+      const extension = parts[3];
+      return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${assetId}-${dimensions}.${extension}`;
+    }
+    return '';
+  }
+
+  // Format Date (e.g. "August 12, 2026")
+  function formatPublishedDate(dateStr) {
+    if (!dateStr) return '';
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  // HTML Entity Escaper
+  function escapeHtml(str) {
+    if (typeof str !== 'string') return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Extract Short Excerpt from Portable Text Body
+  function generateExcerpt(bodyBlocks, maxLength = 160) {
+    if (!bodyBlocks || !Array.isArray(bodyBlocks)) return '';
+
+    let fullText = '';
+    for (const block of bodyBlocks) {
+      if (block && block._type === 'block' && block.children) {
+        for (const child of block.children) {
+          if (child && child.text) {
+            fullText += child.text + ' ';
+          }
+        }
+      }
+      if (fullText.length >= maxLength * 1.5) break;
+    }
+
+    fullText = fullText.trim().replace(/\s+/g, ' ');
+    if (!fullText) return 'Read the complete article for real estate market insights...';
+    if (fullText.length <= maxLength) return fullText;
+
+    return fullText.slice(0, maxLength).trim() + '...';
+  }
+
+  // Portable Text Block Children Renderer (Inline Marks & Links)
+  function renderBlockChildren(block) {
+    if (!block.children || !Array.isArray(block.children)) {
+      return '';
+    }
+
+    const markDefsMap = {};
+    if (block.markDefs && Array.isArray(block.markDefs)) {
+      block.markDefs.forEach(def => {
+        if (def && def._key) {
+          markDefsMap[def._key] = def;
+        }
+      });
+    }
+
+    return block.children.map(child => {
+      if (!child || typeof child.text !== 'string') return '';
+      let text = escapeHtml(child.text).replace(/\n/g, '<br>');
+
+      if (child.marks && Array.isArray(child.marks) && child.marks.length > 0) {
+        child.marks.forEach(markKey => {
+          if (markKey === 'strong') {
+            text = `<strong>${text}</strong>`;
+          } else if (markKey === 'em') {
+            text = `<em>${text}</em>`;
+          } else if (markKey === 'underline') {
+            text = `<u>${text}</u>`;
+          } else if (markKey === 'code') {
+            text = `<code>${text}</code>`;
+          } else if (markKey === 'strike-through') {
+            text = `<s>${text}</s>`;
+          } else if (markDefsMap[markKey]) {
+            const markDef = markDefsMap[markKey];
+            if (markDef._type === 'link' && markDef.href) {
+              const safeHref = escapeHtml(markDef.href);
+              text = `<a href="${safeHref}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+            }
+          }
+        });
+      }
+      return text;
+    }).join('');
+  }
+
+  // Complete Portable Text Body Renderer
+  function portableTextToHTML(blocks) {
+    if (!blocks || !Array.isArray(blocks) || blocks.length === 0) {
+      return '<p>No content available.</p>';
+    }
+
+    let html = '';
+    let inList = null; // 'bullet' or 'number'
+
+    function closeListIfNeeded(nextListItem) {
+      if (inList && inList !== nextListItem) {
+        if (inList === 'bullet') {
+          html += '</ul>';
+        } else if (inList === 'number') {
+          html += '</ol>';
+        }
+        inList = null;
+      }
+    }
+
+    blocks.forEach(block => {
+      if (!block) return;
+
+      // Embedded Images in Portable Text
+      if (block._type === 'image') {
+        closeListIfNeeded(null);
+        const imgUrl = getSanityImageUrl(block);
+        if (imgUrl) {
+          html += `<figure class="blog-body-image"><img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(block.caption || '')}" loading="lazy">${block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : ''}</figure>`;
+        }
+        return;
+      }
+
+      if (block._type !== 'block') {
+        return;
+      }
+
+      const listItem = block.listItem; // 'bullet' or 'number' or undefined
+
+      // Handle lists
+      if (listItem) {
+        if (inList !== listItem) {
+          closeListIfNeeded(null);
+          if (listItem === 'bullet') {
+            html += '<ul>';
+          } else if (listItem === 'number') {
+            html += '<ol>';
+          }
+          inList = listItem;
+        }
+        const itemContent = renderBlockChildren(block);
+        html += `<li>${itemContent}</li>`;
+        return;
+      } else {
+        closeListIfNeeded(null);
+      }
+
+      // Handle regular blocks & headings
+      const style = block.style || 'normal';
+      const content = renderBlockChildren(block);
+
+      if (!content.trim() && style === 'normal') {
+        return;
+      }
+
+      switch (style) {
+        case 'h1':
+          html += `<h1>${content}</h1>`;
+          break;
+        case 'h2':
+          html += `<h2>${content}</h2>`;
+          break;
+        case 'h3':
+          html += `<h3>${content}</h3>`;
+          break;
+        case 'h4':
+          html += `<h4>${content}</h4>`;
+          break;
+        case 'h5':
+          html += `<h5>${content}</h5>`;
+          break;
+        case 'h6':
+          html += `<h6>${content}</h6>`;
+          break;
+        case 'blockquote':
+          html += `<blockquote>${content}</blockquote>`;
+          break;
+        default:
+          html += `<p>${content}</p>`;
+          break;
+      }
+    });
+
+    closeListIfNeeded(null);
+    return html;
+  }
+
+  // Fetch Published Blog Posts from Sanity using GROQ
+  async function loadBlogPosts() {
+    if (!blogGrid) return;
+
+    blogGrid.innerHTML = `
+      <div class="blog-empty-state" style="grid-column: 1 / -1; padding: 40px;">
+        <div class="spinner" style="border-top-color: var(--primary-color); width: 36px; height: 36px; margin: 0 auto 16px;"></div>
+        <p>Loading real estate insights...</p>
+      </div>
+    `;
+
+    const query = encodeURIComponent(`*[_type == "post" && defined(publishedAt) && publishedAt <= now()] | order(publishedAt desc){
+      _id,
+      title,
+      "slug": slug.current,
+      "featuredImageUrl": featuredImage.asset->url,
+      featuredImage,
+      body,
+      publishedAt
+    }`);
+
+    const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}?query=${query}`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch blog posts from Sanity");
+      const result = await response.json();
+
+      if (result.result && Array.isArray(result.result)) {
+        activeBlogPosts = result.result;
+        console.log(`Fetched ${activeBlogPosts.length} published blog post(s) from Sanity.`);
+      } else {
+        activeBlogPosts = [];
+      }
+    } catch (err) {
+      console.error("Error loading blog posts from Sanity:", err);
+      activeBlogPosts = [];
+    }
+
+    renderBlogList(activeBlogPosts);
+    checkHashRoute();
+  }
+
+  // Render Blog Card List
+  function renderBlogList(posts) {
+    if (!blogGrid) return;
+    blogGrid.innerHTML = "";
+
+    if (posts.length === 0) {
+      blogGrid.innerHTML = `
+        <div class="blog-empty-state">
+          <h3>No Blog Posts Published Yet</h3>
+          <p>We are preparing insightful real estate guides, market reports, and property investment tips. Check back soon!</p>
+        </div>
+      `;
+      return;
+    }
+
+    posts.forEach(post => {
+      const imgUrl = post.featuredImageUrl || getSanityImageUrl(post.featuredImage) || "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80";
+      const formattedDate = formatPublishedDate(post.publishedAt);
+      const excerpt = generateExcerpt(post.body);
+
+      const card = document.createElement("article");
+      card.className = "blog-card";
+      card.innerHTML = `
+        <div class="blog-img-wrapper">
+          <img class="blog-img" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(post.title)}" loading="lazy">
+          <span class="blog-badge">Market Guide</span>
+        </div>
+        <div class="blog-info">
+          ${formattedDate ? `<div class="blog-date">📅 ${escapeHtml(formattedDate)}</div>` : ''}
+          <h3 class="blog-title">${escapeHtml(post.title)}</h3>
+          <p class="blog-excerpt">${escapeHtml(excerpt)}</p>
+          <a href="#blog/${escapeHtml(post.slug)}" class="blog-read-btn">
+            Read Article <span>→</span>
+          </a>
+        </div>
+      `;
+
+      card.addEventListener("click", (e) => {
+        e.preventDefault();
+        openBlogArticle(post.slug);
+      });
+
+      blogGrid.appendChild(card);
+    });
+  }
+
+  // Open Individual Blog Article View
+  async function openBlogArticle(slug) {
+    if (!articleOverlay || !articleContent) return;
+
+    let post = activeBlogPosts.find(p => p.slug === slug);
+
+    // If post not found in memory (e.g. direct deep link load), query Sanity directly
+    if (!post) {
+      articleContent.innerHTML = `
+        <div style="text-align: center; padding: 60px 20px;">
+          <div class="spinner" style="border-top-color: var(--primary-color); width: 40px; height: 40px; margin: 0 auto 16px;"></div>
+          <p>Loading article content...</p>
+        </div>
+      `;
+      articleOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+
+      const query = encodeURIComponent(`*[_type == "post" && slug.current == "${slug}"][0]{
+        _id,
+        title,
+        "slug": slug.current,
+        "featuredImageUrl": featuredImage.asset->url,
+        featuredImage,
+        body,
+        publishedAt
+      }`);
+      const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}?query=${query}`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Article fetch failed");
+        const result = await response.json();
+        post = result.result;
+      } catch (e) {
+        console.error("Failed to fetch article:", e);
+      }
+    }
+
+    if (!post) {
+      articleContent.innerHTML = `
+        <div style="text-align: center; padding: 60px 20px;">
+          <h2>Article Not Found</h2>
+          <p>The requested blog article could not be found or has been removed.</p>
+        </div>
+      `;
+      articleOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      return;
+    }
+
+    const imgUrl = post.featuredImageUrl || getSanityImageUrl(post.featuredImage);
+    const formattedDate = formatPublishedDate(post.publishedAt);
+    const bodyHtml = portableTextToHTML(post.body);
+
+    const waText = encodeURIComponent(
+      `Hello Jolis Properties, I just read your article "${post.title}" on your website and would like to learn more about investment opportunities.`
+    );
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+
+    articleContent.innerHTML = `
+      <div class="article-meta-bar">
+        <span class="article-category-badge">Real Estate Guide</span>
+        ${formattedDate ? `<span class="article-date">📅 ${escapeHtml(formattedDate)}</span>` : ''}
+      </div>
+
+      <h1 class="article-main-title">${escapeHtml(post.title)}</h1>
+
+      ${imgUrl ? `<img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(post.title)}" class="article-hero-image">` : ''}
+
+      <div class="article-portable-body">
+        ${bodyHtml}
+      </div>
+
+      <div class="article-cta-box">
+        <h3>Ready to Make Smart Real Estate Investments?</h3>
+        <p>Talk directly with our experts at Jolis Properties for verified lands, luxury homes, and high-appreciation developments in Lagos & Nigeria.</p>
+        <a href="${waUrl}" target="_blank" rel="noopener" class="article-cta-btn">
+          💬 Speak With An Investment Advisor
+        </a>
+      </div>
+    `;
+
+    articleOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    // Update hash cleanly without jump
+    if (window.location.hash !== `#blog/${post.slug}`) {
+      history.pushState(null, "", `#blog/${post.slug}`);
+    }
+  }
+
+  // Close Individual Blog Article View
+  function closeBlogArticle() {
+    if (!articleOverlay) return;
+    articleOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+
+    if (window.location.hash.startsWith("#blog/")) {
+      history.pushState(null, "", "#blog");
+    }
+  }
+
+  // Hash change handler for direct links and browser back/forward
+  function checkHashRoute() {
+    const hash = window.location.hash;
+    if (hash.startsWith("#blog/")) {
+      const slug = hash.replace("#blog/", "").trim();
+      if (slug) {
+        openBlogArticle(slug);
+      }
+    }
+  }
+
+  // Event Listeners for Article Modal
+  if (articleBackBtn) {
+    articleBackBtn.addEventListener("click", closeBlogArticle);
+  }
+  if (articleCloseBtn) {
+    articleCloseBtn.addEventListener("click", closeBlogArticle);
+  }
+  if (articleOverlay) {
+    articleOverlay.addEventListener("click", (e) => {
+      if (e.target === articleOverlay) {
+        closeBlogArticle();
+      }
+    });
+  }
+
+  window.addEventListener("hashchange", checkHashRoute);
+
+  // Initialize Blog loading
+  loadBlogPosts();
+
   // Form WhatsApp Redirection Handler
   const contactForm = document.getElementById("lead-contact-form");
   if (contactForm) {
@@ -586,3 +1028,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
